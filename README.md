@@ -1,21 +1,42 @@
-# 🚌 Bus Management System
+# Bus Management System
 
-A professional Desktop Application built with **JavaFX**, providing a seamless experience for Admin, Managers, and Passengers.
+## **Introduction**
+The **Bus Management System** is a professional desktop application built with **JavaFX**. It provides a centralized platform for transportation logistics, offering tailored interfaces for Admins, Managers, and Passengers. The system ensures a seamless flow from route definition to seat booking and payment verification.
 
 ---
 
-## 📸 Project Visuals & Logic
+## **Features**
+- **Role-Based Access Control (RBAC):** Distinct portals for Admin, Manager, and Passenger roles.
+- **Dynamic Fleet Management:** Admin-controlled route creation and base pricing.
+- **Interactive Booking:** Visual seat selection for passengers with real-time availability.
+- **Financial Workflow:** Managerial oversight for payment verification and flexible pricing.
+- **Automated Ticketing:** Instant ticket generation upon booking approval.
+- **Data Persistence:** Robust backend integration using the H2 Database Engine.
 
-### 1. Welcome Screen
-Users select their role (Admin, Manager, or Passenger) to enter the system.
+---
+
+## **Technologies Used**
+- **Programming Language:** Java (Core)
+- **GUI Framework:** JavaFX / FXML (Scene Builder)
+- **Database:** H2 Database Engine (`bus_system_db`)
+- **Architecture:** MVC (Model-View-Controller) logic
+- **Security:** Encrypted Role-Based Login
+
+---
+
+## **Project Visuals & Logic**
+
+### **1. Entry Point**
+The application starts with a unified Welcome Screen where users select their specific role to access their respective dashboards.
+
 ![Welcome Dashboard](screenshots/Screenshot%202026-03-20%20160809.png)
 
 ---
 
-### 2. Admin Portal (Master Control)
-- **Security:** Default Login: `admin@bus.com` | Password: `admin123`.
-- **Manager Management:** Admin creates manager accounts. Managers can then login using those credentials.
-- **Fleet Control:** Admin defines routes and base prices.
+### **2. Admin Portal (Master Control)**
+The Admin acts as the system architect, managing the personnel and the fundamental constraints of the fleet.
+- **Manager Management:** Create and manage manager credentials.
+- **Fleet Definition:** Define routes and set "floor" (base) prices that cannot be undercut.
 
 | Admin Login | Manager List | Bus Schedules |
 | :---: | :---: | :---: |
@@ -23,9 +44,10 @@ Users select their role (Admin, Manager, or Passenger) to enter the system.
 
 ---
 
-### 3. Manager Portal (Verification & Pricing)
-- **Approval Workflow:** Managers review the passenger's payment screenshot. Once verified, they approve the seat and a ticket is generated.
-- **Price Synchronization:** Managers can update prices (Price must be ≥ Admin's floor price). Changes reflect instantly for passengers.
+### **3. Manager Portal (Verification & Pricing)**
+Managers handle the day-to-day operations and financial adjustments.
+- **Approval Workflow:** Review passenger payment screenshots to confirm seat reservations.
+- **Price Synchronization:** Adjust seat prices dynamically (Validation: Price must be $\ge$ Admin Base Price).
 
 | Manager Login | Booking Requests | Pricing Logic |
 | :---: | :---: | :---: |
@@ -33,12 +55,12 @@ Users select their role (Admin, Manager, or Passenger) to enter the system.
 
 ---
 
-### 4. Passenger Journey (Booking Flow)
-The passenger portal follows a logical step-by-step booking process:
-1. **Search:** Find buses based on source and destination.
-2. **Seat Selection:** Choose preferred seats from the interactive layout.
-3. **Payment:** Upload a screenshot of the transaction for manager's verification.
-4. **History:** Real-time tracking of booking status (Approved/Pending/Rejected).
+### **4. Passenger Journey (Booking Flow)**
+A logical, four-step process designed for ease of use:
+1.  **Search:** Query buses based on source and destination.
+2.  **Seat Selection:** Interactive UI to pick specific seats.
+3.  **Payment:** Upload transaction proof for verification.
+4.  **History:** Track status (Pending/Approved/Rejected) in real-time.
 
 | 1. Search Bus | 2. Seat Selection | 3. Payment Upload | 4. Ticket History |
 | :---: | :---: | :---: | :---: |
@@ -46,12 +68,32 @@ The passenger portal follows a logical step-by-step booking process:
 
 ---
 
-## 🛠️ Technical Details
-- **Frontend:** JavaFX / FXML (Scene Builder).
-- **Backend:** Java (Core).
-- **Database:** H2 Database Engine (`bus_system_db.mv.db`).
-- **Core Logic:** Price validation (Manager Price vs Admin Base Price) and RBAC (Role-Based Access Control).
+## **Core Logic & Implementation**
+### **Database Schema**
+The system utilizes **H2** for lightweight, high-performance data storage. Key tables include:
+- `Users`: Stores credentials and roles.
+- `Buses/Routes`: Stores fleet information and Admin price constraints.
+- `Bookings`: Tracks seat status and payment references.
+
+### **Price Validation Formula**
+To maintain profitability, the system enforces a strict pricing logic:
+$$Price_{Manager} \geq Price_{Admin\_Base}$$
 
 ---
-**Developer:** Armaghan Malik  
-📧 [armaghanmalik81@gmail.com](mailto:armaghanmalik81@gmail.com) | 📞 +91 305 5356221
+
+## **Conclusion**
+The **Bus Management System** demonstrates the power of JavaFX in creating professional enterprise tools. By separating concerns between Admin, Manager, and Passenger, it provides a secure and scalable solution for modern transport management.
+
+---
+
+## **Contact**
+For inquiries or collaborations:
+- **Developer:** Armaghan Malik
+- **Email:** [armaghanmalik81@gmail.com](mailto:armaghanmalik81@gmail.com)
+- **Phone:** +91 305 5356221
+- **LinkedIn:** [View Profile](https://www.linkedin.com/in/malik-armaghan-4629493aa)
+
+---
+
+## **License**
+> **This project is owned by Armaghan Malik and is intended for educational purposes. All rights reserved.**
