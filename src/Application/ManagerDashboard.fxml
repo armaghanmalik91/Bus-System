@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+
+<HBox prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #0f172a;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ManagerController">
+   <children>
+      <VBox prefWidth="220.0" spacing="15" style="-fx-background-color: #1e293b; -fx-padding: 20;">
+         <children>
+            <Text fill="#38bdf8" text="MANAGER PANEL" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Separator opacity="0.2" />
+            
+            <Button fx:id="btnBookings" maxWidth="Infinity" onAction="#handleBookingsTab" style="-fx-background-color: #38bdf8; -fx-text-fill: white; -fx-cursor: hand;" text="Booking Requests" />
+            <Button fx:id="btnSchedules" maxWidth="Infinity" onAction="#handleBusSchedulesTab" style="-fx-background-color: transparent; -fx-text-fill: #94a3b8; -fx-cursor: hand;" text="Bus Schedules" />
+            <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #94a3b8;" text="Staff Attendance" />
+            <Button maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #94a3b8;" text="Fuel &amp; Maintenance" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button maxWidth="Infinity" onAction="#handleLogout" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold;" text="Logout" />
+         </children>
+      </VBox>
+
+      <VBox HBox.hgrow="ALWAYS" spacing="0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" spacing="15" style="-fx-background-color: #1e293b; -fx-padding: 10 30;">
+               <children>
+                  <VBox alignment="CENTER_RIGHT">
+                     <Label fx:id="lblFullName" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Manager Name" />
+                     <Label fx:id="lblShortEmail" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;" text="mail@..." />
+                  </VBox>
+                  
+                  <StackPane onMouseClicked="#handleProfileClick" style="-fx-cursor: hand;">
+                     <children>
+                        <Circle fx:id="profileCircle" fill="#38bdf8" radius="25.0" />
+                        <ImageView fx:id="profileImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <clip>
+                              <Circle centerX="25.0" centerY="25.0" radius="25.0" />
+                           </clip>
+                        </ImageView>
+                        <Text fill="WHITE" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="+" StackPane.alignment="BOTTOM_RIGHT" />
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+
+            <VBox spacing="20" style="-fx-padding: 30;" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <Text fx:id="txtHeader" fill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Passenger Booking Requests" />
+                        </VBox>
+                        
+                        <HBox fx:id="searchContainer" alignment="CENTER" spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 5 15; -fx-background-radius: 20; -fx-border-color: #38bdf8; -fx-border-radius: 20; -fx-border-width: 1;">
+                           <children>
+                              <TextField fx:id="searchBusField" onKeyReleased="#handleSearch" promptText="Search by Bus Name..." style="-fx-background-color: transparent; -fx-text-fill: white; -fx-prompt-text-fill: #94a3b8; -fx-pref-width: 250;" />
+                              <Text fill="#38bdf8" style="-fx-font-size: 16px;" text="🔍" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+
+                  <StackPane VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                           <content>
+                              <TableView fx:id="bookingsTable" prefHeight="400.0" prefWidth="1200" style="-fx-background-radius: 10; -fx-header-text-fill: black;">
+                                 <columns>
+                                    <TableColumn fx:id="colPassenger" prefWidth="130" text="Passenger" style="-fx-alignment: CENTER-LEFT;" />
+                                    <TableColumn fx:id="colCNIC" prefWidth="120" text="CNIC / ID" />
+                                    <TableColumn fx:id="colBus" prefWidth="110" text="Bus Name" />
+                                    <TableColumn fx:id="colBusNumber" prefWidth="100" text="Bus Plate #" />
+                                    <TableColumn fx:id="colRoute" prefWidth="180" text="Route" />
+                                    <TableColumn fx:id="colPrice" prefWidth="90" text="Price (Rs.)" />
+                                    <TableColumn fx:id="colPhone" prefWidth="110" text="Phone" />
+                                    <TableColumn fx:id="colStatus" prefWidth="90" text="Status" />
+                                    <TableColumn fx:id="colPaymentProof" prefWidth="120.0" text="Payment Proof" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+
+                        <ScrollPane fx:id="scheduleScroll" fitToHeight="true" fitToWidth="true" managed="false" pannable="true" style="-fx-background-color: transparent; -fx-background: transparent;" visible="false">
+                           <content>
+                              <TableView fx:id="scheduleTable" prefHeight="400.0" prefWidth="850" style="-fx-background-radius: 10; -fx-header-text-fill: black;">
+                                 <columns>
+                                    <TableColumn fx:id="colBusSched" prefWidth="150" text="Bus Name" />
+                                    <TableColumn fx:id="colBusPlate" prefWidth="120" text="Plate #" />
+                                    <TableColumn fx:id="colRouteSched" prefWidth="200" text="Route" />
+                                    <TableColumn fx:id="colTimeSched" prefWidth="120" text="Time" />
+                                    <TableColumn fx:id="colDateSched" prefWidth="120" text="Date" />
+                                    <TableColumn fx:id="colPriceSched" prefWidth="100" text="Price (Admin)" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+
+                        <VBox fx:id="profileSection" alignment="TOP_CENTER" managed="false" visible="false" spacing="20" 
+                              maxWidth="700" prefWidth="700" 
+                              StackPane.alignment="CENTER"
+                              style="-fx-background-color: #1a222d; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);">
+                           <children>
+                              <Text fill="#38bdf8" text="MY PROFILE SETTINGS" style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+                              
+                              <VBox alignment="CENTER" spacing="15">
+                                 <children>
+                                    <StackPane maxHeight="140" maxWidth="140" style="-fx-background-color: #0f172a; -fx-background-radius: 100; -fx-border-color: #38bdf8; -fx-border-width: 2;">
+                                       <children>
+                                          <ImageView fx:id="bigProfileImg" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true">
+                                             <clip>
+                                                <Circle centerX="65.0" centerY="65.0" radius="65.0" />
+                                             </clip>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
+                                    <Button onAction="#handleImageUpload" style="-fx-background-color: #38bdf8; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 20;" text="Change Photo" />
+                                 </children>
+                              </VBox>
+
+                              <GridPane alignment="CENTER" hgap="20" vgap="15">
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" prefWidth="140" />
+                                    <ColumnConstraints prefWidth="350" />
+                                 </columnConstraints>
+                                 <children>
+                                    <Label text="Full Name:" textFill="#94a3b8" GridPane.rowIndex="0" />
+                                    <TextField fx:id="nameField" prefHeight="35" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                    <Label text="Email:" textFill="#94a3b8" GridPane.rowIndex="1" />
+                                    <TextField fx:id="emailField" prefHeight="35" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                    <Label text="New Password:" textFill="#94a3b8" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="newPassField" prefHeight="35" promptText="Optional" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                    <Label text="Confirm Password:" textFill="#94a3b8" GridPane.rowIndex="3" />
+                                    <PasswordField fx:id="confirmPassField" prefHeight="35" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+
+                              <HBox alignment="CENTER" spacing="15" style="-fx-padding: 10 0 0 0;">
+                                 <children>
+                                    <Button onAction="#handleSaveProfile" prefWidth="150" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 5;" text="SAVE" />
+                                    <Button onAction="#handleBookingsTab" prefWidth="100" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-padding: 10; -fx-cursor: hand; -fx-background-radius: 5;" text="CANCEL" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+
+                  <StackPane>
+                     <children>
+                        <HBox fx:id="bookingControls" alignment="CENTER_LEFT" spacing="15">
+                           <children>
+                              <Button fx:id="printBtn" onAction="#handlePrintTicket" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-padding: 10 20; -fx-cursor: hand; -fx-background-radius: 8;" text="Print Ticket" />
+                              <Button fx:id="deleteBtn" onAction="#handleDeleteBooking" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-padding: 10 20; -fx-cursor: hand; -fx-background-radius: 8;" text="Delete Request" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button onAction="#handleApprove" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-padding: 10 25; -fx-cursor: hand; -fx-background-radius: 8;" text="Approve" />
+                              <Button onAction="#handleReject" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-padding: 10 25; -fx-cursor: hand; -fx-background-radius: 8;" text="Reject" />
+                           </children>
+                        </HBox>
+
+                        <HBox fx:id="scheduleControls" alignment="CENTER_RIGHT" managed="false" visible="false">
+                           <children>
+                              <Button onAction="#handleUpdatePayment" style="-fx-background-color: #38bdf8; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Update Payment Logic" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

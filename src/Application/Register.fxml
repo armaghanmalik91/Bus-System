@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="450.0" styleClass="main-container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.RegisterController">
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" maxWidth="450.0" spacing="20.0" styleClass="form-container">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="CREATE ACCOUNT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="Join the Bus Management System" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox maxWidth="320.0" minWidth="320.0" spacing="12.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Full Name:" textFill="WHITE" />
+                              <TextField fx:id="nameField" promptText="Enter Full Name" styleClass="input-field" />
+                           </children>
+                        </VBox>
+
+                        <VBox maxWidth="320.0" spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Phone Number:" textFill="WHITE" />
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <ComboBox fx:id="countryCodePicker" prefHeight="35.0" prefWidth="100.0" minWidth="100.0" maxWidth="100.0" styleClass="input-field" />
+                                    <TextField fx:id="phoneField" prefHeight="35.0" promptText="Phone Number" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Email Address:" textFill="WHITE" />
+                              <TextField fx:id="emailField" promptText="Enter Email" styleClass="input-field" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Password:" textFill="WHITE" />
+                              <StackPane>
+                                 <children>
+                                    <PasswordField fx:id="passField" onKeyReleased="#checkPasswords" promptText="Create password" styleClass="input-field" />
+                                    <TextField fx:id="passFieldVisible" managed="false" onKeyReleased="#checkPasswords" styleClass="input-field" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Confirm Password:" textFill="WHITE" />
+                              <StackPane>
+                                 <children>
+                                    <PasswordField fx:id="confirmPassField" onKeyReleased="#checkPasswords" promptText="Repeat password" styleClass="input-field" />
+                                    <TextField fx:id="confirmPassFieldVisible" managed="false" onKeyReleased="#checkPasswords" styleClass="input-field" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                        
+                        <Label fx:id="errorLabel" minHeight="15.0" style="-fx-font-size: 11px;" text="" textFill="#ff4d4d" />
+                     </children>
+                  </VBox>
+
+                  <HBox alignment="CENTER_LEFT" maxWidth="320.0">
+                     <children>
+                        <CheckBox fx:id="showPassTick" onAction="#togglePassword" style="-fx-font-size: 12px;" text="Show Password" textFill="WHITE" />
+                     </children>
+                  </HBox>
+
+                  <VBox alignment="CENTER" spacing="12.0">
+                     <children>
+                        <Button fx:id="registerBtn" onAction="#handleRegister" prefHeight="40.0" prefWidth="200.0" styleClass="signup-btn-blue" text="SIGN UP" />
+                        <Button onAction="#goBack" prefHeight="40.0" prefWidth="200.0" styleClass="back-btn-darkred" text="BACK" />
+                     </children>
+                  </VBox>
+                  
+                  <Hyperlink onAction="#goToLogin" style="-fx-text-fill: white; -fx-opacity: 0.8; -fx-font-size: 13px;" text="Already have an account? Login" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

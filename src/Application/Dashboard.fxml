@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="530.0" prefWidth="1100.0" 
+            style="-fx-background-color: #0f172a;" 
+            xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="Application.BookingController">
+
+    <left>
+        <VBox prefWidth="220.0" spacing="12.0" style="-fx-background-color: #1e293b; -fx-background-radius: 0 25 25 0;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" spacing="5.0">
+                    <children>
+                        <Label text="BUS SYSTEM" textFill="#38bdf8">
+                            <font><Font name="System Bold" size="20.0" /></font>
+                        </Label>
+                        <Separator opacity="0.1" prefWidth="130.0" />
+                    </children>
+                    <VBox.margin><Insets bottom="30.0" top="25.0" /></VBox.margin>
+                </VBox>
+
+                <Button mnemonicParsing="false" onAction="#showSearchSection" prefHeight="45.0" prefWidth="200.0" styleClass="nav-button" stylesheets="@style.css" text="🔍 Search Bus" textFill="WHITE" />
+                <Button mnemonicParsing="false" onAction="#showMyBookingsSection" prefHeight="45.0" prefWidth="200.0" styleClass="nav-button" stylesheets="@style.css" text="📋 My Bookings" textFill="WHITE" />
+                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" styleClass="nav-button" stylesheets="@style.css" text="Ticket History" textFill="WHITE" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #ef4444; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: bold;" text="Logout" textFill="WHITE">
+                    <VBox.margin><Insets bottom="20.0" left="10.0" /></VBox.margin>
+                </Button>
+            </children>
+            <padding><Insets left="10.0" right="10.0" /></padding>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane>
+            <children>
+                <VBox fx:id="searchSection" spacing="20.0">
+                    <padding><Insets bottom="25.0" left="30.0" right="30.0" top="25.0" /></padding>
+                    <children>
+                        <Label text="Book Your Journey" textFill="WHITE">
+                            <font><Font name="System Bold" size="26.0" /></font>
+                        </Label>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 15;">
+                            <children>
+                                <ComboBox fx:id="fromCity" prefWidth="150.0" promptText="From" 
+                                          style="-fx-background-color: white; -fx-text-fill: black; -fx-prompt-text-fill: #555;" />
+                                
+                                <ComboBox fx:id="toCity" prefWidth="150.0" promptText="To" 
+                                          style="-fx-background-color: white; -fx-text-fill: black; -fx-prompt-text-fill: #555;" />
+                                
+                                <DatePicker fx:id="travelDate" prefWidth="150.0" />
+                                <Button onAction="#handleSearchBuses" style="-fx-background-color: #38bdf8; -fx-text-fill: white; -fx-font-weight: bold;" text="Search Buses" />
+                            </children>
+                        </HBox>
+
+                        <VBox fx:id="busListContainer" spacing="10.0" prefHeight="120.0" />
+
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #0f172a;" prefHeight="400.0">
+                            <content>
+                                <VBox fx:id="busResultsContainer" spacing="10" style="-fx-padding: 10; -fx-background-color: #0f172a;">
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+
+                        <HBox fx:id="bookingArea" spacing="25.0" visible="false">
+                            <children>
+                                <VBox spacing="10.0" prefWidth="350.0" alignment="TOP_CENTER" style="-fx-background-color: #1e293b; -fx-padding: 15; -fx-background-radius: 15;">
+                                    <children>
+                                        <Label text="Select Your Seat" textFill="WHITE">
+                                            <font><Font name="System Bold" size="18.0" /></font>
+                                        </Label>
+                                        <GridPane fx:id="seatGrid" hgap="6.0" vgap="6.0" alignment="CENTER" />
+                                        <Label fx:id="selectedSeatLabel" text="Selected Seat: None" textFill="#22c55e">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+
+                                <VBox fx:id="dataEntrySection" spacing="15.0" HBox.hgrow="ALWAYS" 
+                                      style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 15;">
+                                    <children>
+                                        <Label text="Enter Booking Details" textFill="#38bdf8">
+                                            <font><Font name="System Bold" size="18.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="cnicInput" promptText="Enter CNIC" 
+                                                   style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-padding: 10;" />
+                                        <TextField fx:id="phoneInput" promptText="Enter Phone Number" 
+                                                   style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-border-color: #334155; -fx-padding: 10;" />
+                                        
+                                        <ComboBox fx:id="managerDropdown" prefWidth="300.0" promptText="Select Manager" 
+                                                  style="-fx-background-color: white; -fx-text-fill: black; -fx-prompt-text-fill: #555;" />
+                                        
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Button onAction="#handleFileUpload" text="Choose Screenshot" style="-fx-font-size: 11px;" />
+                                                <Label fx:id="fileNameLabel" text="No file selected" textFill="#94a3b8" />
+                                            </children>
+                                        </HBox>
+
+                                        <Button onAction="#handleFinalBooking" prefHeight="45.0" prefWidth="250.0" 
+                                                style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" 
+                                                text="Confirm &amp; Send Request" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <VBox fx:id="myBookingsSection" spacing="25.0" visible="false">
+                    <padding><Insets bottom="25.0" left="30.0" right="30.0" top="25.0" /></padding>
+                    <children>
+                        <Label text="My Bookings History" textFill="WHITE">
+                            <font><Font name="System Bold" size="26.0" /></font>
+                        </Label>
+                        
+                        <TableView fx:id="passengerTable" prefHeight="500.0" styleClass="custom-table" stylesheets="@style.css">
+                            <columns>
+                                <TableColumn fx:id="colBus" prefWidth="180.0" text="Bus Name" />
+                                <TableColumn fx:id="colRoute" prefWidth="220.0" text="Route" />
+                                <TableColumn fx:id="colSeat" prefWidth="100.0" text="Seat #" />
+                                <TableColumn fx:id="colStatus" prefWidth="150.0" text="Status" />
+                                <TableColumn fx:id="colPayment" prefWidth="180.0" text="Payment Status" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #0f172a; -fx-padding: 20;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.BookingController">
+   <children>
+      <BorderPane layoutX="25.0" layoutY="25.0" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #1e293b; -fx-background-radius: 20;">
+         
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="20" style="-fx-padding: 0 30 0 30;">
+               <children>
+                  <Text fill="WHITE" text="My Booking History">
+                     <font><Font name="System Bold" size="24.0" /></font>
+                  </Text>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button onAction="#goBackToDashboard" style="-fx-background-color: #334155; -fx-text-fill: white; -fx-cursor: hand;" text="Back to Home" />
+               </children>
+            </HBox>
+         </top>
+
+         <center>
+            <VBox spacing="15" style="-fx-padding: 10 30 30 30;">
+               <children>
+                  <TableView fx:id="passengerTable" prefHeight="450.0" prefWidth="890.0" style="-fx-background-color: #0f172a;">
+                    <columns>
+                      <TableColumn fx:id="colBus" prefWidth="180.0" text="Bus Name" />
+                      <TableColumn fx:id="colRoute" prefWidth="250.0" text="Route" />
+                      <TableColumn fx:id="colSeat" prefWidth="100.0" text="Seat #" />
+                      <TableColumn fx:id="colStatus" prefWidth="150.0" text="Approval Status" />
+                      <TableColumn fx:id="colPayment" prefWidth="150.0" text="Payment Status" />
+                    </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" spacing="20">
+                     <children>
+                        <Button onAction="#handlePayment" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Confirm &amp; Pay Now" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

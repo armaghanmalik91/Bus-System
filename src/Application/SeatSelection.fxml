@@ -1,0 +1,4 @@
+<GridPane hgap="10" vgap="10" alignment="CENTER" style="-fx-background-color: #1e293b; -fx-padding: 20;">
+   <Button fx:id="seat1" text="1" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-min-width: 50;" />
+   <Button fx:id="seat2" text="2" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-min-width: 50;" />
+</GridPane>

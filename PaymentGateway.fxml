@@ -1,0 +1,20 @@
+<VBox alignment="CENTER" spacing="20" style="-fx-background-color: #1e293b; -fx-padding: 40; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.PaymentController">
+   <children>
+      <Text fill="WHITE" text="Secure Payment Gateway">
+         <font><Font name="System Bold" size="24.0" /></font>
+      </Text>
+      
+      <VBox spacing="5" style="-fx-background-color: #0f172a; -fx-padding: 15; -fx-background-radius: 10;">
+         <Label text="Admin Bank Details (Transfer Here):" textFill="#38bdf8" />
+         <Label text="Bank: Alfalah | A/C: 0123-456789-01" textFill="WHITE" />
+         <Label text="EasyPaisa: 0300-1234567" textFill="WHITE" />
+      </VBox>
+
+      <TextField promptText="Enter Transaction ID / Reference" style="-fx-background-color: #0f172a; -fx-text-fill: white;" />
+      
+      <HBox spacing="20" alignment="CENTER">
+         <Button onAction="#processPayment" style="-fx-background-color: #22c55e;" text="Confirm &amp; Update My Bookings" textFill="WHITE" />
+         <Button onAction="#closePayment" style="-fx-background-color: #ef4444;" text="Cancel" textFill="WHITE" />
+      </HBox>
+   </children>
+</VBox>

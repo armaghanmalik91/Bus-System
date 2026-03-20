@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="main-container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.LoginController">
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" maxWidth="450.0" spacing="20.0" styleClass="form-container">
+               <children>
+                  
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Text fx:id="loginTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="PASSENGER LOGIN" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="Welcome back! Please enter your details" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox maxWidth="320.0" spacing="15.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Email Address:" textFill="WHITE" />
+                              <TextField fx:id="emailField" promptText="Enter Email" styleClass="input-field" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Password:" textFill="WHITE" />
+                              <StackPane>
+                                 <children>
+                                    <PasswordField fx:id="passField" promptText="Enter password" styleClass="input-field" />
+                                    <TextField fx:id="passFieldVisible" managed="false" styleClass="input-field" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+                  <HBox alignment="CENTER" maxWidth="320.0">
+                     <children>
+                        <CheckBox fx:id="showPassTick" onAction="#togglePassword" style="-fx-font-size: 12px;" text="Show Password" textFill="WHITE" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Hyperlink onAction="#handleForgotPassword" style="-fx-text-fill: #3498db; -fx-font-size: 12px; -fx-padding: 0;" text="Forgot Password?" />
+                     </children>
+                  </HBox>
+
+                  <VBox alignment="CENTER" spacing="12.0">
+                     <children>
+                        <Button onAction="#handleLogin" prefHeight="40.0" prefWidth="200.0" styleClass="signup-btn-blue" text="LOGIN" />
+                        <Button onAction="#goBack" prefHeight="40.0" prefWidth="200.0" styleClass="back-btn-darkred" text="BACK" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox fx:id="registerSection" alignment="CENTER">
+                    <children>
+                        <Hyperlink onAction="#goToRegister" style="-fx-text-fill: white; -fx-opacity: 0.8; -fx-font-size: 13px;" text="Don't have an account? Sign Up" />
+                    </children>
+                  </VBox>
+
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
