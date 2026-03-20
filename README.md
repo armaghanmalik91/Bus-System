@@ -90,7 +90,7 @@ The **Bus Management System** demonstrates the power of JavaFX in creating profe
 For inquiries or collaborations:
 - **Developer:** Armaghan Malik
 - **Email:** [armaghanmalik81@gmail.com](mailto:armaghanmalik81@gmail.com)
-- **Phone:** +91 305 5356221
+- **Phone:** +92 305 5356221
 - **LinkedIn:** [View Profile](https://www.linkedin.com/in/malik-armaghan-4629493aa)
 
 ---
